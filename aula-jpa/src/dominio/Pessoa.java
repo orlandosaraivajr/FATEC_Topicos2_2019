@@ -2,29 +2,35 @@ package dominio;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="Alunos")
 public class Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	@Column(name="contato")
 	private String email;
+	private String telefone;
 	
 	public Pessoa() {
 	}
 
-	public Pessoa(Integer id, String nome, String email) {
+	public Pessoa(Integer id, String nome, String email,String telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
+		this.telefone = telefone;
 	}
 
 	public Integer getId() {
@@ -51,6 +57,14 @@ public class Pessoa implements Serializable{
 		this.email = email;
 	}
 
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -60,6 +74,8 @@ public class Pessoa implements Serializable{
 		builder.append(nome);
 		builder.append(", email=");
 		builder.append(email);
+		builder.append(", telefone=");
+		builder.append(telefone);
 		builder.append("]");
 		return builder.toString();
 	}
